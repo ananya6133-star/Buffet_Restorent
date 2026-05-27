@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FLECHAZO | Premium Buffet Management</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons (CSS version for ease) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Real-time Toast Notifications Container (manual popovers) -->
+  <div id="toast-container"></div>
+  <!-- Loading Animation -->
+  <div id="loading-screen" class="loading-overlay">
+    <div class="loader-content">
+      <div class="loader-logo">FLECHAZO</div>
+      <div class="loader-spinner"></div>
+      <p class="loader-text">Initializing premium dining console...</p>
+    </div>
+  </div>
+  <!-- Main View Router -->
+  <main id="app-viewport">
+    <!-- View states are injected here dynamically:
+         - Login/Portal View
+         - Customer Interface
+         - Chef Dashboard
+         - Captain Console
+         - Manager Dashboard
+    -->
+    
+    <!-- Login Portal (Default Initial State) -->
+    <section id="login-portal" class="view-panel active">
+      <div class="portal-brand">
+        <h1 class="brand-title">FLECHAZO</h1>
+        <p class="brand-tagline">Med-Asian Luxury Buffet Experience</p>
+      </div>
+      <div class="portal-card">
+        <h2 class="portal-header">Access Dashboard</h2>
+        
+        <div class="portal-tabs">
+          <button type="button" class="portal-tab active" data-role="customer">Customer QR</button>
+          <button type="button" class="portal-tab" data-role="staff">Staff Login</button>
+        </div>
+        <!-- Customer QR Simulation Panel -->
+        <div id="customer-panel" class="portal-form active">
+          <p class="form-desc">In the restaurant, scan the table QR code to order. Simulating a table scan below:</p>
+          <form id="customer-login-form">
+            <div class="form-group">
+              <label for="customer-table-number">Select Simulated Table</label>
+              <select id="customer-table-number" class="form-control" required>
+                <option value="" disabled selected>Choose table number...</option>
+                <!-- Generated dynamically, but we can write them -->
+                <option value="1">Table 1 (Captain Rohit)</option>
+                <option value="2">Table 2 (Captain Rohit)</option>
+                <option value="3">Table 3 (Captain Rohit - Occupied)</option>
+                <option value="4">Table 4 (Captain Rohit)</option>
+                <option value="5">Table 5 (Captain Rohit)</option>
+                <option value="6">Table 6 (Captain Sneha)</option>
+                <option value="7">Table 7 (Captain Sneha - Occupied)</option>
+                <option value="8">Table 8 (Captain Sneha)</option>
+                <option value="9">Table 9 (Captain Sneha)</option>
+                <option value="10">Table 10 (Captain Sneha)</option>
+                <option value="11">Table 11 (Captain Karan)</option>
+                <option value="12">Table 12 (Captain Karan - Occupied)</option>
+                <option value="13">Table 13 (Captain Karan)</option>
+                <option value="14">Table 14 (Captain Karan)</option>
+                <option value="15">Table 15 (Captain Karan - Occupied)</option>
+                <option value="16">Table 16 (Captain Pooja)</option>
+                <option value="17">Table 17 (Captain Pooja)</option>
+                <option value="18">Table 18 (Captain Pooja)</option>
+                <option value="19">Table 19 (Captain Pooja)</option>
+                <option value="20">Table 20 (Captain Pooja)</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-gold w-100">
+              <i class="bi bi-qr-code-scan me-2"></i> Scan QR & Enter Portal
+            </button>
+          </form>
+        </div>
+        <!-- Staff Credentials Panel -->
+        <div id="staff-panel" class="portal-form">
+          <p class="form-desc">Enter your credentials to access your designated role portal.</p>
+          <form id="staff-login-form">
+            <div class="form-group">
+              <label for="staff-role">Role</label>
+              <select id="staff-role" class="form-control" required>
+                <option value="" disabled selected>Select Role...</option>
+                <option value="chef">Chef (Kitchen)</option>
+                <option value="captain">Captain (Service Floor)</option>
+                <option value="manager">Restaurant Manager</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="staff-username">Username</label>
+              <input type="text" id="staff-username" class="form-control" placeholder="Enter username..." required>
+              <small class="form-help">Hint: chef1, chef2, chef3, chef4, chef5, captain1, captain2, manager</small>
+            </div>
+            <button type="submit" class="btn btn-teal w-100">
+              <i class="bi bi-shield-lock me-2"></i> Authenticate & Enter
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Content panels for each role will be rendered dynamically by their modules inside these templates -->
+    <section id="customer-viewport" class="view-panel"></section>
+    <section id="chef-viewport" class="view-panel"></section>
+    <section id="captain-viewport" class="view-panel"></section>
+    <section id="manager-viewport" class="view-panel"></section>
+  </main>
+  <!-- ES Modules Integration -->
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
